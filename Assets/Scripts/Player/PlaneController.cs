@@ -4,41 +4,50 @@ using UnityEngine;
 
 public class PlaneController : MonoBehaviour
 {
+    public float forwardSpeed = 25f;
+    public float strafeSpeed = 7.5f;
+    public float hoverSpeed = 5f;
+    private float activeForwardSpeed, activeHoverSpeed;
+    private float forwardAcceleration = 2.5f;
+    private float hoverAcceleration = 2f;
 
-    private Rigidbody rb;
-    public float rotateAmount = 5.0f;
-    public float mouseSensitivity = 10f;
+    public float lookRateSpeed = 90f;
+    private Vector2 lookInput, screenCenter, mouseDistance;
+
+    private float rollInput;
+    public float rollSpeed = 90f, rollAcceleration = 3.5f;
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        screenCenter.x = Screen.width * 0.5f;
+        screenCenter.y = Screen.height * 0.5f;
+
+        Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
-        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
-    void FixedUpdate()
-    {
-        float v = Input.GetAxis("Mouse X");
-        float h = Input.GetAxis("Mouse Y");
-
-        rb.AddTorque(v * mouseSensitivity, h * mouseSensitivity, 0);
-
-        if(Input.GetKey(KeyCode.W))
-        {
-            rb.AddForce(transform.forward);
-        }
-    }
-
     void Update()
     {
-        if(Input.GetAxis("Horizontal") < 0)
-        {
-            transform.Rotate(0, 0, rotateAmount);
-        }
-        else if(Input.GetAxis("Horizontal") > 0)
-        {
-            transform.Rotate(0, 0, -rotateAmount);
-        }
+        lookInput.x = Input.mousePosition.x;
+        lookInput.y = Input.mousePosition.y;
+
+        mouseDistance.x = (lookInput.x - screenCenter.x) / screenCenter.y;
+        mouseDistance.y = (lookInput.y - screenCenter.y) / screenCenter.y;
+
+        mouseDistance = Vector2.ClampMagnitude(mouseDistance, 1f);
+
+        rollInput = Mathf.Lerp(rollInput, Input.GetAxisRaw("Horizontal"), rollAcceleration * Time.deltaTime);
+
+        transform.Rotate(-mouseDistance.y * lookRateSpeed * Time.deltaTime, mouseDistance.x * lookRateSpeed
+            * Time.deltaTime, -rollInput * rollSpeed * Time.deltaTime, Space.Self);
+
+        activeForwardSpeed = Mathf.Lerp(activeForwardSpeed, Input.GetAxisRaw("Vertical") * forwardSpeed,
+            forwardAcceleration * Time.deltaTime);
+        activeHoverSpeed = Mathf.Lerp(activeHoverSpeed, Input.GetAxisRaw("Hover") * hoverSpeed,
+            hoverAcceleration * Time.deltaTime);
+
+        transform.position += transform.forward * activeForwardSpeed * Time.deltaTime;
+        transform.position += transform.up * activeHoverSpeed * Time.deltaTime;
     }
 }

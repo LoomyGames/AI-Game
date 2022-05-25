@@ -7,7 +7,7 @@ public class IslandSpawner : MonoBehaviour
 
     public int difficulty = 3;
     public float islandDistance = 1500f;
-    private Player player;
+    private PlaneController player;
     private int playerHealth = 0;
     private Object[] easyIslands;
     private Object[] normalIslands;
@@ -23,8 +23,7 @@ public class IslandSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindWithTag("Player").GetComponent<Player>();
-        playerHealth = player.GetHealth();
+        player = GameObject.FindWithTag("Player").GetComponent<PlaneController>();
         easyIslands = Resources.LoadAll("Prefabs/Easy Islands", typeof(GameObject));
         normalIslands = Resources.LoadAll("Prefabs/Normal Islands", typeof(GameObject));
         hardIslands = Resources.LoadAll("Prefabs/Hard Islands", typeof(GameObject));
@@ -34,7 +33,6 @@ public class IslandSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerHealth = player.GetHealth();
       if (currentTime < timer && !spawnedIsland)
         {
             currentTime += Time.deltaTime;
@@ -45,7 +43,6 @@ public class IslandSpawner : MonoBehaviour
             {
                 Destroy(currentIsland);
             }
-            playerHealth = player.GetHealth();
             currentTime = 0;
             spawnedIsland = true;
             SetWorldDifficulty(new Vector3(0,0,0));
