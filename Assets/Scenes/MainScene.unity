@@ -400,7 +400,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1310547180}
+    m_TransformParent: {fileID: 1160474168}
     m_Modifications:
     - target: {fileID: 3149982294928076758, guid: cadce848e2afd674da0027e8f0e4f140, type: 3}
       propertyPath: m_RootOrder
@@ -499,7 +499,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1016744529}
+  - {fileID: 1747632403}
+  - {fileID: 1762546096}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -517,7 +520,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxRooms: 30
   maxWallsHeight: 10
+  maxTowerHeight: 20
   maxRandomness: 7
+  maxWeapons: 10
+  towerPercentage: 0.1
   roomSizeObject: {fileID: 1016744530}
   parentTransform: {fileID: 1310547180}
 --- !u!1 &1310547179
@@ -546,10 +552,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1016744529}
-  - {fileID: 1747632403}
-  - {fileID: 1762546096}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -639,7 +642,7 @@ Transform:
   m_LocalPosition: {x: -95.27, y: 2.93, z: -96.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1310547180}
+  m_Father: {fileID: 1160474168}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1762546092
@@ -735,7 +738,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 200, y: 1, z: 200}
   m_Children: []
-  m_Father: {fileID: 1310547180}
+  m_Father: {fileID: 1160474168}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1788314403
