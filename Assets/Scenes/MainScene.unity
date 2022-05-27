@@ -519,11 +519,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxRooms: 30
-  maxWallsHeight: 10
+  maxWallHeight: 10
   maxTowerHeight: 20
   maxRandomness: 7
   maxWeapons: 10
   towerPercentage: 0.1
+  maxBarracks: 10
+  barracksPercentage: 0.2
+  weaponsPercentage: 0.5
+  decorationsPercentage: 0.2
+  fortressStrength: 10
+  fortressHealth: 10
+  fortressPlanes: 10
   roomSizeObject: {fileID: 1016744530}
   parentTransform: {fileID: 1310547180}
 --- !u!1 &1310547179
@@ -540,7 +547,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1310547180
 Transform:
