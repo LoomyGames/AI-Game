@@ -17,7 +17,7 @@ public class PlaneController : MonoBehaviour
     private float rollInput;
     public float rollSpeed = 90f, rollAcceleration = 3.5f;
 
-    public float health = 100;
+    public int health = 100;
     public int kills = 0;
     public int ammo = 1000;
     // Start is called before the first frame update

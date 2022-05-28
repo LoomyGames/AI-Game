@@ -453,7 +453,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1295a52204c2eca41af230a3cc19075b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficultyCoefficient: 1
+  playerHealth: 100
+  playerKills: 0
+  playerAmmo: 1000
 --- !u!1 &1788314403
 GameObject:
   m_ObjectHideFlags: 0

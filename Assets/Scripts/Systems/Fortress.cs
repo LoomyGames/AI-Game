@@ -44,23 +44,25 @@ public class Fortress : MonoBehaviour
     private Object[] wallDecorations;
 
     public GameObject roomSizeObject;
+    private GameDirector gameDirector;
 
     public Transform parentTransform;
 
     private Vector3 basicRoomSize;
 
     private int currentWeapons = 0;
-    private int currentBarracks = 0;
     // Start is called before the first frame update
     void Awake()
     {
         matricesPosition = roomSizeObject.transform.position;
+        gameDirector = GameObject.FindWithTag("GameManager").GetComponent<GameDirector>();
         floorsWalls = Resources.LoadAll("Floors And Walls");
         towerTiles = Resources.LoadAll("Tower Tiles");
         weaponsTiles = Resources.LoadAll("Weapon Tiles");
         barracksTiles = Resources.LoadAll("Barracks Tiles");
         wallDecorations = Resources.LoadAll("Wall Decorations");
         basicRoomSize = roomSizeObject.GetComponent<Collider>().bounds.size;
+        AdjustFortressSettings();
         CreateBase();
     }
 
@@ -188,5 +190,16 @@ public class Fortress : MonoBehaviour
         }
         decoration = Instantiate((GameObject)wallDecorations[Random.Range(0, wallDecorations.Length)], parentTransform);
         decoration.transform.position = currentDecoPosition;
+    }
+
+    void AdjustFortressSettings()
+    {
+        gameDirector.GetPlayerInfo();
+        maxRooms = (int)(gameDirector.playerHealth / 2.5f);
+        weaponsPercentage = (float)gameDirector.playerKills / 20;
+        maxWeapons = gameDirector.playerKills;
+        towerPercentage = (float)maxRooms / 300;
+        barracksPercentage = (float)gameDirector.playerAmmo / 3000;
+        decorationsPercentage = (float)gameDirector.playerHealth / 300;
     }
 }
