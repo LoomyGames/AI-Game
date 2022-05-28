@@ -51,6 +51,8 @@ public class Fortress : MonoBehaviour
     private Vector3 basicRoomSize;
 
     private int currentWeapons = 0;
+
+    public bool isComplete = false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -69,6 +71,10 @@ public class Fortress : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(fortressPlanes == 0)
+        {
+            isComplete = true;
+        }
         /*if (Input.GetKeyDown(KeyCode.Space))
         {
             matricesPosition = roomSizeObject.transform.position;

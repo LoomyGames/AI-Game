@@ -5,47 +5,49 @@ using UnityEngine;
 public class IslandSpawner : MonoBehaviour
 {
     GameObject player;
-    public GameObject islandPrefab;
+    public GameObject fortressPrefab;
 
-    GameObject spawnedIsland;
+    GameObject spawnedFortress;
+    Fortress fortressGenerator;
 
-    float distanceToIsland;
+    float distanceToFortress;
     bool isSpawned = true;
 
-    public float maxDistanceToIsland = 1500f;
+    public float maxDistanceToFortress = 1500f;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        SpawnIsland();
+        SpawnFortress();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(spawnedIsland != null)
+        if(spawnedFortress != null)
         {
-            distanceToIsland = Vector3.Distance(player.transform.position, spawnedIsland.transform.position);
+            distanceToFortress = Vector3.Distance(player.transform.position, spawnedFortress.transform.position);
         }
-        if(distanceToIsland > maxDistanceToIsland && isSpawned)
+        if(distanceToFortress > maxDistanceToFortress || fortressGenerator.isComplete && isSpawned)
         {
-            Destroy(spawnedIsland);
-            StartCoroutine(IslandCooldown());
+            Destroy(spawnedFortress);
+            StartCoroutine(FortressCooldown());
             isSpawned = false;
         }
     }
 
-    void SpawnIsland()
+    void SpawnFortress()
     {
-        spawnedIsland = Instantiate(islandPrefab);
-        spawnedIsland.transform.position = player.transform.position + player.transform.forward * 200;
+        spawnedFortress = Instantiate(fortressPrefab);
+        spawnedFortress.transform.position = player.transform.position + player.transform.forward * 200;
+        fortressGenerator = spawnedFortress.GetComponent<Fortress>();
         isSpawned = true;
     }
 
-    IEnumerator IslandCooldown()
+    IEnumerator FortressCooldown()
     {
         yield return new WaitForSeconds(1f);
-        SpawnIsland();
+        SpawnFortress();
     }
 
 }

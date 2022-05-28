@@ -425,8 +425,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c36d13e4d52fa8c43b3abeeefb22d115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  islandPrefab: {fileID: 1093996896975735978, guid: 15d6345579052a443b3dfde3002e0b7d, type: 3}
-  maxDistanceToIsland: 600
+  fortressPrefab: {fileID: 1093996896975735978, guid: 15d6345579052a443b3dfde3002e0b7d, type: 3}
+  maxDistanceToFortress: 1500
 --- !u!4 &1418168281
 Transform:
   m_ObjectHideFlags: 0
