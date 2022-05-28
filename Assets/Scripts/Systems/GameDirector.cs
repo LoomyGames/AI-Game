@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameDirector : MonoBehaviour
 {
     PlaneController player;
+    IslandSpawner islandSpawner;
 
     [Range(0,2)]
     public float difficultyCoefficient = 1f;
@@ -16,6 +17,7 @@ public class GameDirector : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player").GetComponent<PlaneController>();
+        islandSpawner = GameObject.FindWithTag("GameManager").GetComponent<IslandSpawner>();
     }
 
     // Update is called once per frame
@@ -27,6 +29,9 @@ public class GameDirector : MonoBehaviour
     void GetPlayerInfo()
     {
         //get the player's data
+        playerHealth = player.health;
+        playerKills = player.kills;
+        playerAmmo = player.ammo;
     }
 
     public void SetFortressDifficulty()

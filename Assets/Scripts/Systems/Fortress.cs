@@ -67,7 +67,7 @@ public class Fortress : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        /*if (Input.GetKeyDown(KeyCode.Space))
         {
             matricesPosition = roomSizeObject.transform.position;
             currentWeapons = 0;
@@ -77,7 +77,7 @@ public class Fortress : MonoBehaviour
                 Destroy(child.gameObject);
             }
             CreateBase();
-        }
+        }*/
     }
 
     public GameObject GetRandomRoom()
