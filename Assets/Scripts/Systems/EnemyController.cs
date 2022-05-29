@@ -78,7 +78,7 @@ public class EnemyController : MonoBehaviour
     {
         if(player.health < 100)
         {
-            player.health += 20;
+            player.health += 2;
         }
         player.ammo += 100;
         player.kills++;

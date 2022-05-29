@@ -30,6 +30,7 @@ public class IslandSpawner : MonoBehaviour
         }
         if(distanceToFortress > maxDistanceToFortress || fortressGenerator.isComplete && isSpawned)
         {
+            player.GetComponent<PlaneController>().health += 20;
             Destroy(spawnedFortress);
             StartCoroutine(FortressCooldown());
             isSpawned = false;
