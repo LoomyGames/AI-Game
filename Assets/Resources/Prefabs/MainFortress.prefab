@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 1093996896975735972}
   m_Layer: 0
   m_Name: MainFortress
-  m_TagString: Untagged
+  m_TagString: Fortress
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -188,6 +188,7 @@ MonoBehaviour:
   fortressPlanes: 10
   roomSizeObject: {fileID: 2636950305569916698}
   parentTransform: {fileID: 3989052542657559545}
+  isComplete: 0
 --- !u!1 &7934618871568023241
 GameObject:
   m_ObjectHideFlags: 0

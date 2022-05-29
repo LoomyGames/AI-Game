@@ -28,12 +28,9 @@ public class Fortress : MonoBehaviour
     [SerializeField]
     private float decorationsPercentage = 0.2f;
 
-    [SerializeField]
-    private int fortressStrength = 10;
-    [SerializeField]
-    private int fortressHealth = 10;
-    [SerializeField]
-    private int fortressPlanes = 10;
+    public int fortressHealth = 0;
+
+    public int fortressPlanes = 10;
 
     private Vector3 matricesPosition;
 
@@ -42,6 +39,7 @@ public class Fortress : MonoBehaviour
     private Object[] weaponsTiles;
     private Object[] barracksTiles;
     private Object[] wallDecorations;
+    private Object[] planePrefabs;
 
     public GameObject roomSizeObject;
     private GameDirector gameDirector;
@@ -53,6 +51,7 @@ public class Fortress : MonoBehaviour
     private int currentWeapons = 0;
 
     public bool isComplete = false;
+    public bool isPlane = false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -63,6 +62,7 @@ public class Fortress : MonoBehaviour
         weaponsTiles = Resources.LoadAll("Weapon Tiles");
         barracksTiles = Resources.LoadAll("Barracks Tiles");
         wallDecorations = Resources.LoadAll("Wall Decorations");
+        planePrefabs = Resources.LoadAll("Planes");
         basicRoomSize = roomSizeObject.GetComponent<Collider>().bounds.size;
         AdjustFortressSettings();
         CreateBase();
@@ -75,17 +75,15 @@ public class Fortress : MonoBehaviour
         {
             isComplete = true;
         }
-        /*if (Input.GetKeyDown(KeyCode.Space))
+
+        if (!isPlane && fortressPlanes > 0)
         {
-            matricesPosition = roomSizeObject.transform.position;
-            currentWeapons = 0;
-            currentBarracks = 0;
-            foreach (Transform child in parentTransform)
-            {
-                Destroy(child.gameObject);
-            }
-            CreateBase();
-        }*/
+            GameObject plane;
+            plane = Instantiate((GameObject)planePrefabs[Random.Range(0, planePrefabs.Length)]);
+            plane.transform.position = transform.position + new Vector3(Random.Range(0, 100f), 
+                Random.Range(maxTowerHeight * 5, maxTowerHeight * 5 + 40f), Random.Range(0, 100f));
+            isPlane = true;
+        }
     }
 
     public GameObject GetRandomRoom()
@@ -207,5 +205,6 @@ public class Fortress : MonoBehaviour
         towerPercentage = (float)maxRooms / 300;
         barracksPercentage = (float)gameDirector.playerAmmo / 3000;
         decorationsPercentage = (float)gameDirector.playerHealth / 300;
+        fortressHealth = gameDirector.playerHealth;
     }
 }

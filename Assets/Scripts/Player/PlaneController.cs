@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlaneController : MonoBehaviour
 {
     public float forwardSpeed = 25f;
-    public float strafeSpeed = 7.5f;
     public float hoverSpeed = 5f;
     private float activeForwardSpeed, activeHoverSpeed;
     private float forwardAcceleration = 2.5f;
