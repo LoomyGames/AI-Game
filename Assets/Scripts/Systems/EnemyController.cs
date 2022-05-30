@@ -24,7 +24,7 @@ public class EnemyController : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player").GetComponent<PlaneController>();
         fortress = GameObject.FindWithTag("Fortress").GetComponent<Fortress>();
-        health += fortress.fortressHealth;
+        health += fortress.fortressHealth / 3;
     }
 
     // Update is called once per frame
@@ -54,7 +54,7 @@ public class EnemyController : MonoBehaviour
 
     void IdleAround()
     {
-        //Add a bit of idle behavior
+        //Do nothing
     }
 
     void MoveTowardsPlayer()

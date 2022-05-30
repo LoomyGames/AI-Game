@@ -183,12 +183,12 @@ MonoBehaviour:
   barracksPercentage: 0.2
   weaponsPercentage: 0.5
   decorationsPercentage: 0.2
-  fortressStrength: 10
   fortressHealth: 10
   fortressPlanes: 10
   roomSizeObject: {fileID: 2636950305569916698}
   parentTransform: {fileID: 3989052542657559545}
   isComplete: 0
+  isPlane: 0
 --- !u!1 &7934618871568023241
 GameObject:
   m_ObjectHideFlags: 0

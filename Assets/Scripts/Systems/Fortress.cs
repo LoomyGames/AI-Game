@@ -5,7 +5,7 @@ using UnityEngine;
 public class Fortress : MonoBehaviour
 {
     [SerializeField]
-    private int maxRooms = 20;
+    private int maxRooms = 20; //
 
     [SerializeField]
     private int maxWallHeight = 10;
@@ -19,8 +19,6 @@ public class Fortress : MonoBehaviour
     private int maxWeapons = 10;
     [SerializeField]
     private float towerPercentage = 0.2f;
-    [SerializeField]
-    private int maxBarracks = 10;
     [SerializeField]
     private float barracksPercentage = 0.2f;
     [SerializeField]
@@ -52,6 +50,8 @@ public class Fortress : MonoBehaviour
 
     public bool isComplete = false;
     public bool isPlane = false;
+
+    public GameObject currentPlane;
     // Start is called before the first frame update
     void Awake()
     {
@@ -78,9 +78,8 @@ public class Fortress : MonoBehaviour
 
         if (!isPlane && fortressPlanes > 0)
         {
-            GameObject plane;
-            plane = Instantiate((GameObject)planePrefabs[Random.Range(0, planePrefabs.Length)]);
-            plane.transform.position = transform.position + new Vector3(Random.Range(0, 100f), 
+            currentPlane = Instantiate((GameObject)planePrefabs[Random.Range(0, planePrefabs.Length)]);
+            currentPlane.transform.position = transform.position + new Vector3(Random.Range(0, 100f), 
                 Random.Range(maxTowerHeight * 5, maxTowerHeight * 5 + 40f), Random.Range(0, 100f));
             isPlane = true;
         }
@@ -110,6 +109,7 @@ public class Fortress : MonoBehaviour
             }
             else if (Random.Range(0f, 1f) <= barracksPercentage && (room.name == "BarracksBase(Clone)" || room.name == "BarracksBase2(Clone)"))
             {
+                fortressHealth++;
                 CreateFiller(previousRoom, barracksTiles, 4, "Barracks");
             }
 
@@ -205,6 +205,6 @@ public class Fortress : MonoBehaviour
         towerPercentage = (float)maxRooms / 300;
         barracksPercentage = (float)gameDirector.playerAmmo / 3000;
         decorationsPercentage = (float)gameDirector.playerHealth / 300;
-        fortressHealth = gameDirector.playerHealth;
+        fortressHealth += gameDirector.playerHealth;
     }
 }
