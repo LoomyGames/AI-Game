@@ -1,0 +1,26 @@
+--------------GAMEPLAY INSTRUCTIONS--------------
+
+Select your preferred build: Windows or Linux
+After opening the game, a menu will appear presenting 2 options: play and quit.
+Upon pressing play, the user will be directly sent into the second scene, in the ship ready to fly.
+The goal is simple: destroy the enemy ship, fly around the fortress, try flying away from it for a while.
+Explore around and have fun! Upon death the scene will reset though, so be mindful of where the enemy is when flying around.
+
+CONTROLS: 
+
+W, A - move Forward and backward
+Q, E - Ascend and descend directly 
+A, D - Roll left and right
+P - Return to menu
+Mouse movement - aim the ship (follows the invisible cursor)
+Mouse button 1 (left click) - Fire weapon semi-auto (Hold for full-auto)
+
+--------------BUILD INSTRUCTIONS-----------------
+
+It is recommended after forking to remove the 2 build files from the actual project files.
+Open up Unity and import the project.
+When the editor is open, go to File -> Build Settings
+Add in the Menu scene as index 0, and MainScene as index 1
+Select the preferred platform and click build.
+Select the file where the built game should reside in, wait for it to finish building
+Go to the folder and open the game. Enjoy!
