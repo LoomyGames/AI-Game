@@ -4,29 +4,23 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public int damage = 20;
+    public int damage = 20; //the bullet damage
     // Start is called before the first frame update
-    void Start()
+    void Start() //as soon as the bullet is created it has a lifetime of 4 seconds for optimization
     {
         Destroy(gameObject, 4);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter(Collision collision) //when the bullet collides with a collider
     {
-        
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.CompareTag("Player"))
+        if(collision.gameObject.CompareTag("Player")) //if that colldier belongs to the player
         {
             PlaneController player = collision.gameObject.GetComponent<PlaneController>();
-            player.health -= damage / 5 + player.kills;
-        } else if (collision.gameObject.CompareTag("Enemy"))
+            player.health -= damage / 5 + player.kills; //deal damage to the player based on its kills
+        } else if (collision.gameObject.CompareTag("Enemy")) //otherwise if it's an enemy
         {
-            collision.gameObject.GetComponent<EnemyController>().health -= damage;
+            collision.gameObject.GetComponent<EnemyController>().health -= damage; //damage it
         }
-        Destroy(gameObject);
+        Destroy(gameObject); //finally, destroy it upon contact
     }
 }

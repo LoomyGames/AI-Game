@@ -6,24 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void startClick()
+    public void startClick() //if the user clicks on play, load the scene
     {
         SceneManager.LoadScene(1);
     }
 
-    public void quitClick()
+    public void quitClick() //if the user clicks on quit, quit the game
     {
         Application.Quit();
     }
